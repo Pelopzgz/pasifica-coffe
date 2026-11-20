@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pasifica Coffee — Kawaii Sky-Aesthetic Cafe &amp; Catalog</title>
+
+  <!-- Google Fonts: Outfit (Display) & Plus Jakarta Sans (UI / Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            skyLight: '#E6F4FA',
+            skyMid: '#BCE3F5',
+            oceanBlue: '#439AC6',
+            oceanTeal: '#143E4D',
+            creamyWhite: '#FFFDF9',
+            strawberryPastel: '#FFE8EE',
+            taroLavender: '#EFE8FF',
+            matchaMint: '#E6F6EC',
+            charcoalInk: '#18222F'
+          },
+          fontFamily: {
+            display: ['Outfit', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          },
+          boxShadow: {
+            pill: '0 10px 26px -6px rgba(20, 62, 77, 0.14)',
+            card: '0 18px 40px -14px rgba(20, 62, 77, 0.12)',
+            float: '0 22px 46px -12px rgba(67, 154, 198, 0.28)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FFFDF9;
+      color: #18222F;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Signature Sky-Blue Rounded Highlight Badge with Shimmer Sweep */
+    .title-highlight {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      background-color: #439AC6;
+      color: #FFFFFF;
+      padding: 0.06em 0.38em 0.12em;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px -6px rgba(67, 154, 198, 0.45);
+      line-height: 1.08;
+      vertical-align: bottom;
+    }
+
+    .title-highlight::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 75%;
+      height: 100%;
+      background: linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-20deg);
+      animation: highlightShimmer 4.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes highlightShimmer {
+      0%, 55% { left: -130%; }
+      88%, 100% { left: 170%; }
+    }
+
+    /* Cloud Drift & Hero Floating Animations */
+    @keyframes cloudDrift {
+      0%, 100% { transform: translateX(0px) translateY(0px); }
+      50% { transform: translateX(18px) translateY(-6px); }
+    }
+    .cloud-drift {
+      animation: cloudDrift 9s ease-in-out infinite;
+    }
+
+    @keyframes pillFloat {
+      0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+      50% { transform: translateY(-9px) rotate(calc(var(--rot, 0deg) + 2deg)); }
+    }
+    .pill-float {
+      animation: pillFloat var(--dur, 4.4s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes cupBob {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .cup-bob {
+      animation: cupBob 4.6s ease-in-out infinite;
+    }
+
+    /* Cat Mug Steam, Blinking Eyes, Twitching Ears & Purr Wiggle */
+    @keyframes steamRise {
+      0% { opacity: 0; transform: translateY(6px) scale(0.92); }
+      45% { opacity: 0.85; }
+      100% { opacity: 0; transform: translateY(-22px) scale(1.08); }
+    }
+    .steam-1 { animation: steamRise 3.2s ease-in-out infinite; }
+    .steam-2 { animation: steamRise 3.2s ease-in-out 1.05s infinite; }
+    .steam-3 { animation: steamRise 3.2s ease-in-out 2.1s infinite; }
+
+    @keyframes catBlink {
+      0%, 92%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(0.08); }
+    }
+    .cat-eye-blink {
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: catBlink 4.3s infinite;
+    }
+
+    @keyframes earTwitchLeft {
+      0%, 84%, 100% { transform: rotate(0deg); }
+      88% { transform: rotate(-7deg); }
+      92% { transform: rotate(2deg); }
+      96% { transform: rotate(-4deg); }
+    }
+    @keyframes earTwitchRight {
+      0%, 72%, 100% { transform: rotate(0deg); }
+      76% { transform: rotate(7deg); }
+      80% { transform: rotate(-2deg); }
+      84% { transform: rotate(4deg); }
+    }
+    .cat-ear-left {
+      transform-origin: 155px 150px;
+      animation: earTwitchLeft 5.8s ease-in-out infinite;
+    }
+    .cat-ear-right {
+      transform-origin: 305px 150px;
+      animation: earTwitchRight 6.4s ease-in-out 1.4s infinite;
+    }
+
+    @keyframes purrWiggle {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      20% { transform: rotate(-4deg) scale(1.04); }
+      40% { transform: rotate(4deg) scale(1.05); }
+      60% { transform: rotate(-3deg) scale(1.03); }
+      80% { transform: rotate(2.5deg) scale(1.02); }
+    }
+    .animate-purr-wiggle {
+      animation: purrWiggle 0.65s var(--ease-spring);
+    }
+
+    @keyframes twinkleStar {
+      0%, 100% { opacity: 0.35; transform: scale(0.85) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.22) rotate(18deg); }
+    }
+    .star-twinkle {
+      animation: twinkleStar 3.2s ease-in-out infinite;
+    }
+
+    /* Spring Bounce, Jelly & Ripple Micro-Interactions */
+    @keyframes springBounce {
+      0% { transform: scale(0.92); }
+      45% { transform: scale(1.07); }
+      75% { transform: scale(0.98); }
+      100% { transform: scale(1); }
+    }
+    .animate-spring-bounce {
+      animation: springBounce 0.48s var(--ease-spring);
+    }
+
+    @keyframes jellyBounce {
+      0% { transform: scale(1, 1); }
+      25% { transform: scale(1.26, 0.78); }
+      45% { transform: scale(0.84, 1.2); }
+      65% { transform: scale(1.12, 0.9); }
+      82% { transform: scale(0.95, 1.05); }
+      100% { transform: scale(1, 1); }
+    }
+    .animate-jelly {
+      animation: jellyBounce 0.62s var(--ease-spring);
+    }
+
+    @keyframes rippleRing {
+      0% { transform: scale(0.7); opacity: 0.85; }
+      100% { transform: scale(2.35); opacity: 0; }
+    }
+    .wish-ripple {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      border: 2px solid #F43F5E;
+      pointer-events: none;
+      animation: rippleRing 0.55s ease-out forwards;
+    }
+
+    @keyframes burstHeartFloat {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+      100% { opacity: 0; transform: translate(var(--tx, 0px), var(--ty, -100px)) scale(1.3) rotate(var(--rot, 15deg)); }
+    }
+    .burst-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 65;
+      animation: burstHeartFloat 0.95s var(--ease-smooth) forwards;
+    }
+
+    @keyframes musicNoteFloat {
+      0% { opacity: 0; transform: translate(0, 0) scale(0.6) rotate(-12deg); }
+      25% { opacity: 1; }
+      100% { opacity: 0; transform: translate(var(--nx, 24px), -85px) scale(1.25) rotate(18deg); }
+    }
+    .music-note-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 65;
+      animation: musicNoteFloat 1.25s var(--ease-smooth) forwards;
+    }
+
+    @keyframes glowPulseReview {
+      0% { box-shadow: 0 0 0 0 rgba(67, 154, 198, 0.7); transform: scale(0.95); }
+      50% { box-shadow: 0 0 0 14px rgba(67, 154, 198, 0); transform: scale(1.03); }
+      100% { box-shadow: 0 0 0 0 rgba(67, 154, 198, 0); transform: scale(1); }
+    }
+    .review-new-glow {
+      animation: glowPulseReview 1.4s ease-out;
+    }
+
+    /* Cutie Cup Studio Liquid Wave & Rising Bubbles */
+    @keyframes liquidWave {
+      0%, 100% { transform: translateX(0px); }
+      50% { transform: translateX(-14px); }
+    }
+    .liquid-wave-anim {
+      animation: liquidWave 3.2s ease-in-out infinite;
+    }
+
+    @keyframes bubbleRise {
+      0% { opacity: 0; transform: translateY(10px) scale(0.6); }
+      50% { opacity: 0.75; }
+      100% { opacity: 0; transform: translateY(-28px) scale(1.15); }
+    }
+    .cup-bubble-1 { animation: bubbleRise 2.6s ease-in-out infinite; }
+    .cup-bubble-2 { animation: bubbleRise 3.1s ease-in-out 0.9s infinite; }
+    .cup-bubble-3 { animation: bubbleRise 2.8s ease-in-out 1.7s infinite; }
+
+    /* 3D Perspective Tilt & Specular Shine */
+    .tilt-card {
+      transform-style: preserve-3d;
+      transition: transform 0.25s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .tilt-card .card-shine {
+      pointer-events: none !important;
+      background: radial-gradient(
+        circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0) 62%
+      );
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .tilt-card:hover .card-shine {
+      opacity: 1;
+    }
+    #sparkleCanvas,
+    #magneticCursor,
+    .card-peeking-ears {
+      pointer-events: none !important;
+    }
+
+    /* Dual Infinite Marquee Rows & Running Ticker */
+    @keyframes marqueeLeft {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes marqueeRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0%); }
+    }
+    .marquee-track-left {
+      display: flex;
+      width: max-content;
+      animation: marqueeLeft 38s linear infinite;
+    }
+    .marquee-track-right {
+      display: flex;
+      width: max-content;
+      animation: marqueeRight 42s linear infinite;
+    }
+    .marquee-wrapper:hover .marquee-track-left,
+    .marquee-wrapper:hover .marquee-track-right {
+      animation-play-state: paused;
+    }
+
+    @keyframes tickerSlide {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: tickerSlide 26s linear infinite;
+    }
+
+    /* Custom Magnetic Spring Cursor Follower (Desktop Pointer Only) */
+    #magneticCursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 9999px;
+      border: 2px solid rgba(67, 154, 198, 0.65);
+      background: radial-gradient(circle, rgba(184, 226, 248, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+      pointer-events: none;
+      z-index: 90;
+      transform: translate3d(-100px, -100px, 0);
+      transition: width 0.22s var(--ease-spring), height 0.22s var(--ease-spring), background-color 0.22s ease, border-color 0.22s ease, opacity 0.25s ease;
+      will-change: transform;
+    }
+    #magneticCursor.cursor-hover {
+      width: 52px;
+      height: 52px;
+      border-color: #439AC6;
+      background-color: rgba(67, 154, 198, 0.14);
+    }
+
+    /* Scroll Reveal with Stagger */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(24px) scale(0.985);
+      transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+      transition-delay: calc(var(--stagger, 0) * 60ms);
+    }
+    .reveal-up.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Hide Scrollbar Utility */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* =========================================================================
+       ADORABLE LIVING KAWAII ANIMATIONS (MOCHI CAT, BUTTERFLIES, EARS & JELLY)
+    ========================================================================= */
+    @keyframes mochiTrot {
+      0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+      25% { transform: translateY(-5px) rotate(1.5deg); }
+      50% { transform: translateY(0px) rotate(-1deg); }
+      75% { transform: translateY(-4px) rotate(2deg); }
+    }
+    .mochi-trot {
+      animation: mochiTrot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes tailSwish {
+      0%, 100% { transform: rotate(-10deg); }
+      50% { transform: rotate(16deg); }
+    }
+    .tail-swish {
+      transform-origin: 24px 68px;
+      animation: tailSwish 2.1s ease-in-out infinite;
+    }
+
+    @keyframes yarnBounce {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      45% { transform: translateY(-11px) rotate(140deg); }
+      75% { transform: translateY(-3px) rotate(240deg); }
+    }
+    .yarn-bounce {
+      animation: yarnBounce 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    @keyframes wingFlapLeft {
+      0% { transform: scaleX(1) rotate(0deg); }
+      100% { transform: scaleX(0.38) rotate(-14deg); }
+    }
+    @keyframes wingFlapRight {
+      0% { transform: scaleX(1) rotate(0deg); }
+      100% { transform: scaleX(0.38) rotate(14deg); }
+    }
+    .butterfly-wing-l {
+      transform-origin: 24px 24px;
+      animation: wingFlapLeft 0.32s ease-in-out infinite alternate;
+    }
+    .butterfly-wing-r {
+      transform-origin: 24px 24px;
+      animation: wingFlapRight 0.32s ease-in-out infinite alternate;
+    }
+
+    @keyframes butterflyHover {
+      0%, 100% { transform: translate(0px, 0px) rotate(-4deg); }
+      33% { transform: translate(10px, -12px) rotate(5deg); }
+      66% { transform: translate(-8px, -6px) rotate(-6deg); }
+    }
+    .butterfly-hover {
+      animation: butterflyHover 5.2s ease-in-out infinite;
+    }
+
+    @keyframes treatBob {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-9px) scale(1.06); }
+    }
+    .treat-bob {
+      animation: treatBob 3.6s ease-in-out infinite;
+    }
+    .scatter-critter {
+      transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes paradeArchFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .parade-arch-float {
+      animation: paradeArchFloat 4.6s ease-in-out infinite;
+    }
+
+    @keyframes orbitHaloSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .orbit-halo {
+      animation: orbitHaloSpin 16s linear infinite;
+    }
+
+    @keyframes tagBob {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    .tag-bob {
+      animation: tagBob 2.8s ease-in-out infinite;
+    }
+
+    /* Elastic Jelly-Squish Interactive Buttons */
+    .elastic-btn {
+      transition: transform 0.25s var(--ease-spring), background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .elastic-btn:hover {
+      animation: jellyBounce 0.58s var(--ease-spring);
+    }
+    .elastic-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* Peeking Cat-Ears on Menu Cards */
+    .card-peeking-ears {
+      opacity: 0;
+      transform: translateY(14px) scale(0.82);
+      transition: transform 0.38s var(--ease-spring), opacity 0.26s ease;
+    }
+    .menu-card-shell:hover .card-peeking-ears {
+      opacity: 1;
+      transform: translateY(0px) scale(1);
+    }
+
+    /* Footer Peeking Cat Tapping Paws & Tail */
+    @keyframes pawTapLeft {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(-6deg); }
+    }
+    @keyframes pawTapRight {
+      0%, 100% { transform: translateY(-4px) rotate(6deg); }
+      50% { transform: translateY(1px) rotate(0deg); }
+    }
+    .footer-paw-l {
+      transform-origin: center;
+      animation: pawTapLeft 1.25s ease-in-out infinite;
+    }
+    .footer-paw-r {
+      transform-origin: center;
+      animation: pawTapRight 1.25s ease-in-out infinite;
+    }
+
+    @keyframes pawBounceIdle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+    .paw-bounce-idle {
+      animation: pawBounceIdle 2.2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-oceanBlue selection:text-white">
+
+  <!-- Top Viewport Sky-Blue Scroll Progress Indicator -->
+  <div class="pointer-events-none fixed left-0 top-0 z-[70] h-1 w-full bg-skyLight/40">
+    <div
+      id="scrollProgressBar"
+      class="h-full w-0 rounded-r-full bg-gradient-to-r from-skyMid via-oceanBlue to-oceanTeal transition-[width] duration-75 ease-out"
+    ></div>
+  </div>
+
+  <!-- Global HTML5 Canvas Sparkle, Star & Heart Particle Overlay -->
+  <canvas id="sparkleCanvas" class="pointer-events-none fixed inset-0 z-50 h-full w-full"></canvas>
+
+  <!-- Custom Magnetic Spring Cursor Ring (Automatically hidden on touch/coarse devices) -->
+  <div id="magneticCursor" class="hidden md:block opacity-0" aria-hidden="true"></div>
+
+  <!-- =====================================================================
+       1. STICKY GLASSMORPHISM NAVBAR, LIVE SEARCH, ORDER TRACKER & BARISTA CONSOLE
+  ====================================================================== -->
+  <header
+    id="navbar"
+    class="sticky top-0 z-40 w-full bg-transparent transition-all duration-300"
+  >
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:px-6 lg:px-8">
+      <!-- Two-Line Brand Wordmark -->
+      <a href="#home" class="group flex shrink-0 flex-col leading-none focus:outline-none">
+        <span class="font-display text-lg font-extrabold tracking-tight text-oceanBlue transition-transform duration-300 group-hover:scale-105 sm:text-xl">
+          pasifica
+        </span>
+        <span class="font-display text-lg font-extrabold tracking-tight text-oceanTeal -mt-1 sm:text-xl">
+          coffee.
+        </span>
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav aria-label="Navigasi Utama" class="hidden items-center gap-6 lg:flex">
+        <a href="#home" class="text-sm font-semibold text-charcoalInk/80 transition-colors hover:text-oceanBlue">Home</a>
+        <a href="#favorites" class="text-sm font-semibold text-charcoalInk/80 transition-colors hover:text-oceanBlue">Favorites</a>
+        <a href="#full-menu" class="text-sm font-semibold text-charcoalInk/80 transition-colors hover:text-oceanBlue">Menu</a>
+        <a href="#custom-cup" class="text-sm font-semibold text-charcoalInk/80 transition-colors hover:text-oceanBlue">Cutie Cup</a>
+        <a href="#reviews" class="text-sm font-semibold text-charcoalInk/80 transition-colors hover:text-oceanBlue">Reviews</a>
+        <a href="#visit" class="text-sm font-semibold text-charcoalInk/80 transition-colors hover:text-oceanBlue">Visit</a>
+      </nav>
+
+      <!-- Right Controls: Live Search + Active Order Pill + Barista Console + Dark Round Cart -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <!-- Live Real-Time Search Bar -->
+        <div class="relative">
+          <div class="flex items-center rounded-full border border-skyMid/80 bg-white/90 px-3 py-1.5 shadow-xs backdrop-blur-md transition-all focus-within:border-oceanBlue focus-within:ring-2 focus-within:ring-oceanBlue/20 sm:px-3.5 sm:py-2">
+            <svg class="h-4 w-4 shrink-0 text-oceanBlue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input
+              id="navbar-search-input"
+              type="text"
+              placeholder="Cari kopi, matcha, pastry..."
+              autocomplete="off"
+              class="w-24 bg-transparent pl-2 text-xs font-medium text-charcoalInk placeholder-charcoalInk/45 focus:outline-none sm:w-44 md:w-52 sm:text-sm"
+            />
+            <button
+              id="clear-search-btn"
+              type="button"
+              aria-label="Hapus pencarian"
+              class="hidden ml-1 rounded-full p-0.5 text-charcoalInk/45 hover:bg-skyLight hover:text-oceanTeal"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- Instant Live Sea
